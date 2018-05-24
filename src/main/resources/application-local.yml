@@ -1,0 +1,8 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://175.113.251.240:3306/blackberry_dev
+    username: ${mysql_user}
+    password: ${mysql_password}
