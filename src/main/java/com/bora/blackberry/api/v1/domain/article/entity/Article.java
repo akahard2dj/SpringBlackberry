@@ -1,12 +1,16 @@
 package com.bora.blackberry.api.v1.domain.article.entity;
 
 import com.bora.blackberry.api.v1.domain.constant.IsType;
-import lombok.Getter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Article {
 
@@ -22,10 +26,10 @@ public class Article {
     private long likesCount;
     private long dislikeCount;
 
-    @Column(length = 1)
+    @Column(length = 1, columnDefinition = "ENUM('Y', 'N') default 'N'")
     @Enumerated(value = EnumType.STRING)
     private IsType deleted;
-    @Column(length = 1)
+    @Column(length = 1, columnDefinition = "ENUM('Y', 'N') default 'N'")
     @Enumerated(value = EnumType.STRING)
     private IsType reported;
 

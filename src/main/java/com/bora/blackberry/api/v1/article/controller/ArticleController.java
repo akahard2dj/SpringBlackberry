@@ -1,15 +1,16 @@
 package com.bora.blackberry.api.v1.article.controller;
 
+import com.bora.blackberry.api.v1.article.form.ArticleForm;
 import com.bora.blackberry.api.v1.article.vo.ArticleVO;
 import com.bora.blackberry.api.v1.domain.article.service.ArticleService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -28,5 +29,16 @@ public class ArticleController {
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok(articleVOList);
+    }
+
+    @PostMapping("/articles/boards/{boardId}")
+    public ResponseEntity<?> createArticle(@PathVariable long boardId,
+                                           @RequestBody ArticleForm articleForm) {
+
+        long id = articleService.createArticle(boardId, articleForm);
+
+        Map<String, Long> result = new HashMap<>();
+        result.put("id", id);
+        return ResponseEntity.ok(result);
     }
 }
