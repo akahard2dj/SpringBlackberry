@@ -3,6 +3,6 @@ spring:
     hibernate:
       ddl-auto: update
   datasource:
-    url: jdbc:mysql://175.113.251.240:3306/blackberry_dev
+    url: jdbc:mysql://175.113.251.240:3306/blackberry_dev?charset=utf-8
     username: ${mysql_user}
     password: ${mysql_password}
