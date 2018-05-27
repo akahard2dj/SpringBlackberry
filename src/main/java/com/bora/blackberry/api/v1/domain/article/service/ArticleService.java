@@ -31,4 +31,29 @@ public class ArticleService {
 
         return savedArticle.getId();
     }
+
+    public void updateArticle(long articleId, ArticleForm articleForm) {
+
+        Article article = articleRepository.findById(articleId);
+        if (article == null) {
+            // TODO: exception
+            return;
+        }
+
+        article.setTitle(articleForm.getTitle());
+        article.setBody(articleForm.getBody());
+
+        articleRepository.save(article);
+    }
+
+    public void deleteArticle(long articleId) {
+        Article article = articleRepository.findById(articleId);
+        if (article == null) {
+            // TODO: exception
+            return;
+        }
+
+        article.setDeleted(IsType.Y);
+        articleRepository.save(article);
+    }
 }

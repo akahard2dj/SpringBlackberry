@@ -10,4 +10,5 @@ import java.util.List;
 public interface ArticleRepository extends CrudRepository<Article, Long> {
 
     List<Article> findAllByBoardId(long boardId);
+    Article findById(long id);
 }

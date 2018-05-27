@@ -5,6 +5,7 @@ import com.bora.blackberry.api.v1.article.vo.ArticleVO;
 import com.bora.blackberry.api.v1.domain.article.service.ArticleService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,5 +41,20 @@ public class ArticleController {
         Map<String, Long> result = new HashMap<>();
         result.put("id", id);
         return ResponseEntity.ok(result);
+    }
+
+    @PutMapping("/articles/{articleId}")
+    public ResponseEntity<?> updateArticle(@PathVariable long articleId,
+                                           @RequestBody ArticleForm articleForm) {
+        articleService.updateArticle(articleId, articleForm);
+
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/articles/{articleId}")
+    public ResponseEntity<?> deleteArticle(@PathVariable long articleId) {
+        articleService.deleteArticle(articleId);
+
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 }
