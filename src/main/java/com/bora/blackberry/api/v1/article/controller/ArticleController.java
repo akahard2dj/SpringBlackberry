@@ -2,11 +2,10 @@ package com.bora.blackberry.api.v1.article.controller;
 
 import com.bora.blackberry.api.v1.article.form.ArticleForm;
 import com.bora.blackberry.api.v1.article.vo.ArticleVO;
+import com.bora.blackberry.api.v1.common.ResponseWrapper;
 import com.bora.blackberry.domain.article.service.ArticleService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -23,38 +22,38 @@ public class ArticleController {
     private ModelMapper modelMapper = new ModelMapper();
 
     @GetMapping("/articles/boards/{boardId}")
-    public ResponseEntity<?> getArticles(@PathVariable long boardId) {
+    public ResponseWrapper getArticles(@PathVariable long boardId) {
 
         List<ArticleVO> articleVOList = articleService.getArticles(boardId).stream()
                 .map(article -> modelMapper.map(article, ArticleVO.class))
                 .collect(Collectors.toList());
 
-        return ResponseEntity.ok(articleVOList);
+        return ResponseWrapper.ok(articleVOList);
     }
 
     @PostMapping("/articles/boards/{boardId}")
-    public ResponseEntity<?> createArticle(@PathVariable long boardId,
+    public ResponseWrapper createArticle(@PathVariable long boardId,
                                            @RequestBody ArticleForm articleForm) {
 
         long id = articleService.createArticle(boardId, articleForm);
 
         Map<String, Long> result = new HashMap<>();
         result.put("id", id);
-        return ResponseEntity.ok(result);
+        return ResponseWrapper.ok(result);
     }
 
     @PutMapping("/articles/{articleId}")
-    public ResponseEntity<?> updateArticle(@PathVariable long articleId,
+    public ResponseWrapper updateArticle(@PathVariable long articleId,
                                            @RequestBody ArticleForm articleForm) {
         articleService.updateArticle(articleId, articleForm);
 
-        return ResponseEntity.ok(HttpStatus.OK);
+        return ResponseWrapper.ok();
     }
 
     @DeleteMapping("/articles/{articleId}")
-    public ResponseEntity<?> deleteArticle(@PathVariable long articleId) {
+    public ResponseWrapper deleteArticle(@PathVariable long articleId) {
         articleService.deleteArticle(articleId);
 
-        return ResponseEntity.ok(HttpStatus.OK);
+        return ResponseWrapper.ok();
     }
 }

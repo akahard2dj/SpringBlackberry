@@ -1,6 +1,7 @@
 package com.bora.blackberry.domain.article.service;
 
 import com.bora.blackberry.api.v1.article.form.ArticleForm;
+import com.bora.blackberry.api.v1.common.exception.CommonException;
 import com.bora.blackberry.domain.article.entity.Article;
 import com.bora.blackberry.domain.article.repository.ArticleRepository;
 import com.bora.blackberry.domain.constant.IsType;
@@ -36,8 +37,7 @@ public class ArticleService {
 
         Article article = articleRepository.findById(articleId);
         if (article == null) {
-            // TODO: exception
-            return;
+            throw new CommonException("cannot find article with id: " + articleId);
         }
 
         article.setTitle(articleForm.getTitle());
@@ -49,8 +49,7 @@ public class ArticleService {
     public void deleteArticle(long articleId) {
         Article article = articleRepository.findById(articleId);
         if (article == null) {
-            // TODO: exception
-            return;
+            throw new CommonException("cannot find article with id: " + articleId);
         }
 
         article.setDeleted(IsType.Y);
