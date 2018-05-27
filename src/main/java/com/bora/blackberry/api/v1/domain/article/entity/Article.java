@@ -26,13 +26,15 @@ public class Article {
     private long likesCount;
     private long dislikeCount;
 
-    @Column(length = 1, columnDefinition = "ENUM('Y', 'N') default 'N'")
+    @Column(length = 1, columnDefinition = "ENUM('Y', 'N') NOT NULL DEFAULT 'N'")
     @Enumerated(value = EnumType.STRING)
     private IsType deleted;
-    @Column(length = 1, columnDefinition = "ENUM('Y', 'N') default 'N'")
+    @Column(length = 1, columnDefinition = "ENUM('Y', 'N') NOT NULL DEFAULT 'N'")
     @Enumerated(value = EnumType.STRING)
     private IsType reported;
 
+    @Column(columnDefinition = "TIMESTAMP NOT NULL")
     private LocalDateTime createdAt;
+    @Column(columnDefinition = "TIMESTAMP NOT NULL DEFAULT NOW() ON UPDATE NOW()")
     private LocalDateTime updatedAt;
 }
