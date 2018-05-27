@@ -2,7 +2,7 @@ package com.bora.blackberry.api.v1.article.controller;
 
 import com.bora.blackberry.api.v1.article.form.ArticleForm;
 import com.bora.blackberry.api.v1.article.vo.ArticleVO;
-import com.bora.blackberry.api.v1.domain.article.service.ArticleService;
+import com.bora.blackberry.domain.article.service.ArticleService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

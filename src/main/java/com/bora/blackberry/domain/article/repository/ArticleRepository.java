@@ -1,6 +1,6 @@
-package com.bora.blackberry.api.v1.domain.article.repository;
+package com.bora.blackberry.domain.article.repository;
 
-import com.bora.blackberry.api.v1.domain.article.entity.Article;
+import com.bora.blackberry.domain.article.entity.Article;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

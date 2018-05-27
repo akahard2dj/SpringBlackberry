@@ -1,6 +1,6 @@
-package com.bora.blackberry.api.v1.domain.article.entity;
+package com.bora.blackberry.domain.article.entity;
 
-import com.bora.blackberry.api.v1.domain.constant.IsType;
+import com.bora.blackberry.domain.constant.IsType;
 import lombok.*;
 
 import javax.persistence.*;

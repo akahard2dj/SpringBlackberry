@@ -1,9 +1,9 @@
-package com.bora.blackberry.api.v1.domain.article.service;
+package com.bora.blackberry.domain.article.service;
 
 import com.bora.blackberry.api.v1.article.form.ArticleForm;
-import com.bora.blackberry.api.v1.domain.article.entity.Article;
-import com.bora.blackberry.api.v1.domain.article.repository.ArticleRepository;
-import com.bora.blackberry.api.v1.domain.constant.IsType;
+import com.bora.blackberry.domain.article.entity.Article;
+import com.bora.blackberry.domain.article.repository.ArticleRepository;
+import com.bora.blackberry.domain.constant.IsType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
