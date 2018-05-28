@@ -1,4 +1,4 @@
-package com.bora.blackberry.domain.University.entity;
+package com.bora.blackberry.domain.university.entity;
 
 import com.bora.blackberry.domain.constant.IsType;
 import lombok.*;
