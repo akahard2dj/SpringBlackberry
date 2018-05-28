@@ -8,9 +8,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
+import javax.validation.Valid;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -33,18 +32,15 @@ public class ArticleController {
 
     @PostMapping("/articles/boards/{boardId}")
     public ResponseWrapper createArticle(@PathVariable long boardId,
-                                           @RequestBody ArticleForm articleForm) {
+                                         @Valid @RequestBody ArticleForm articleForm) {
 
         long id = articleService.createArticle(boardId, articleForm);
-
-        Map<String, Long> result = new HashMap<>();
-        result.put("id", id);
-        return ResponseWrapper.ok(result);
+        return ResponseWrapper.ok(id);
     }
 
     @PutMapping("/articles/{articleId}")
     public ResponseWrapper updateArticle(@PathVariable long articleId,
-                                           @RequestBody ArticleForm articleForm) {
+                                         @Valid @RequestBody ArticleForm articleForm) {
         articleService.updateArticle(articleId, articleForm);
 
         return ResponseWrapper.ok();

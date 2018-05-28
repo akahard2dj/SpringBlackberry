@@ -1,4 +1,4 @@
-package com.bora.blackberry.domain.article.entity;
+package com.bora.blackberry.domain.board.entity;
 
 import com.bora.blackberry.domain.constant.IsType;
 import lombok.*;
@@ -12,26 +12,24 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Article {
+public class Board {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String title;
-    @Column(length = 2000)
-    private String body;
 
-    private long boardId;
-    private long hitsCount;
-    private long likesCount;
-    private long dislikeCount;
+    @Column(nullable = false)
+    private String title;
+
+    @Column(nullable = false, length = 1000)
+    private String description;
+
+    @Column(nullable = false)
+    private long countOfStudent;
 
     @Column(length = 1, columnDefinition = "ENUM('Y', 'N') NOT NULL DEFAULT 'N'")
     @Enumerated(value = EnumType.STRING)
     private IsType deleted;
-    @Column(length = 1, columnDefinition = "ENUM('Y', 'N') NOT NULL DEFAULT 'N'")
-    @Enumerated(value = EnumType.STRING)
-    private IsType reported;
 
     @Column(columnDefinition = "TIMESTAMP NOT NULL")
     private LocalDateTime createdAt;
