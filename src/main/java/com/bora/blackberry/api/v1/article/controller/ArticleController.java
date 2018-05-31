@@ -65,4 +65,14 @@ public class ArticleController {
 
         return ResponseWrapper.ok();
     }
+
+    @PutMapping("/articles/{articleId}/like")
+    public ResponseWrapper increaseLikeCount(@PathVariable long articleId) {
+        return ResponseWrapper.ok(articleService.increaseLikeCount(articleId));
+    }
+
+    @PutMapping("/articles/{articleId}/dislike")
+    public ResponseWrapper increaseDislikeCount(@PathVariable long articleId) {
+        return ResponseWrapper.ok(articleService.increaseDislikeCount(articleId));
+    }
 }

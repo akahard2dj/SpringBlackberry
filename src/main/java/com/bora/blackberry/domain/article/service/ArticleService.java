@@ -24,13 +24,11 @@ public class ArticleService {
 
     @Transactional
     public Article getDetailArticle(long articleId) {
-        Article article = articleRepository.findById(articleId);
+        Article article = getArticleWithId(articleId);
 
-        if (article != null) {
-            article.setHitsCount(article.getHitsCount() + 1);
-            article.setUpdatedAt(LocalDateTime.now());
-            articleRepository.save(article);
-        }
+        article.setHitsCount(article.getHitsCount() + 1);
+        article.setUpdatedAt(LocalDateTime.now());
+        articleRepository.save(article);
 
         return article;
     }
@@ -52,10 +50,7 @@ public class ArticleService {
     @Transactional
     public void updateArticle(long articleId, ArticleForm articleForm) {
 
-        Article article = articleRepository.findById(articleId);
-        if (article == null) {
-            throw new CommonException("cannot find article with id: " + articleId);
-        }
+        Article article = getArticleWithId(articleId);
 
         article.setTitle(articleForm.getTitle());
         article.setBody(articleForm.getBody());
@@ -66,12 +61,37 @@ public class ArticleService {
 
     @Transactional
     public void deleteArticle(long articleId) {
+        Article article = getArticleWithId(articleId);
+
+        article.setDeleted(IsType.Y);
+        article.setUpdatedAt(LocalDateTime.now());
+        articleRepository.save(article);
+    }
+
+    @Transactional
+    public long increaseLikeCount(long articleId) {
+        Article article = getArticleWithId(articleId);
+
+        article.setUpdatedAt(LocalDateTime.now());
+        article.setLikesCount(article.getLikesCount() + 1);
+        return articleRepository.save(article).getLikesCount();
+    }
+
+    @Transactional
+    public long increaseDislikeCount(long articleId) {
+        Article article = getArticleWithId(articleId);
+
+        article.setUpdatedAt(LocalDateTime.now());
+        article.setDislikeCount(article.getDislikeCount() + 1);
+        return articleRepository.save(article).getDislikeCount();
+    }
+
+    private Article getArticleWithId(long articleId) {
+
         Article article = articleRepository.findById(articleId);
         if (article == null) {
             throw new CommonException("cannot find article with id: " + articleId);
         }
-
-        article.setDeleted(IsType.Y);
-        articleRepository.save(article);
+        return article;
     }
 }
