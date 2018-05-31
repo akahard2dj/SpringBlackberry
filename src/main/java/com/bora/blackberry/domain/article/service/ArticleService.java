@@ -22,6 +22,11 @@ public class ArticleService {
         return articleRepository.findAllByBoardId(boardId);
     }
 
+    public Article getDetailArticle(long articleId) {
+        return articleRepository.findById(articleId);
+    }
+
+    @Transactional
     public long createArticle(long boardId, ArticleForm articleForm) {
 
         Article savedArticle = articleRepository.save(

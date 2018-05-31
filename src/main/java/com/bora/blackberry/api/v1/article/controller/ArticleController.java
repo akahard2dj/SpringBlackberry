@@ -30,6 +30,14 @@ public class ArticleController {
         return ResponseWrapper.ok(articleVOList);
     }
 
+    @GetMapping("/articles/{articleId}")
+    public ResponseWrapper getDetailArticle(@PathVariable long articleId) {
+
+        return ResponseWrapper.ok(
+            modelMapper.map(articleService.getDetailArticle(articleId), ArticleVO.class)
+        );
+    }
+
     @PostMapping("/articles/boards/{boardId}")
     public ResponseWrapper createArticle(@PathVariable long boardId,
                                          @Valid @RequestBody ArticleForm articleForm) {
