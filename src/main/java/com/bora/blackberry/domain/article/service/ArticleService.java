@@ -22,8 +22,17 @@ public class ArticleService {
         return articleRepository.findAllByBoardId(boardId);
     }
 
+    @Transactional
     public Article getDetailArticle(long articleId) {
-        return articleRepository.findById(articleId);
+        Article article = articleRepository.findById(articleId);
+
+        if (article != null) {
+            article.setHitsCount(article.getHitsCount() + 1);
+            article.setUpdatedAt(LocalDateTime.now());
+            articleRepository.save(article);
+        }
+
+        return article;
     }
 
     @Transactional
