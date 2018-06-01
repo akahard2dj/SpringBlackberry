@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface UniversityRepository extends CrudRepository<University, Long> {
 
+    University findById(long id);
     List<University> findAll();
 }

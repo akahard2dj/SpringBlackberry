@@ -14,7 +14,7 @@ public class StudentRegistrationForm {
     private int universityId;
 
     @NotEmpty
-    private String emailPostfix;
+    private String emailPrefix;
 
     @NotEmpty
     private String password;

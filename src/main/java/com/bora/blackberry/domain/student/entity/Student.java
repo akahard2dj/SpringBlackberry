@@ -22,7 +22,7 @@ public class Student {
     private long universityId;
 
     @Column(nullable = false)
-    private String emailPostfix;
+    private String emailPrefix;
 
     @Column(nullable = false)
     private String password;

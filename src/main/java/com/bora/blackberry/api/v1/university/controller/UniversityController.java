@@ -31,7 +31,7 @@ public class UniversityController {
     @ApiOperation(value = "대학교 리스트 조회", notes = "대학교 리스트 조회")
     public ResponseWrapper getAllUniversities() {
 
-        List<University> universityList = universityService.getAllUniversities();
+        List<University> universityList = universityService.findAll();
         return ResponseWrapper.ok(
                 universityList.stream().map(u -> modelMapper.map(u, UniversityVO.class))
                         .collect(Collectors.toList())

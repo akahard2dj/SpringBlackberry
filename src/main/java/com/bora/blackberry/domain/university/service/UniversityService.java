@@ -17,7 +17,11 @@ public class UniversityService {
     @Autowired
     private UniversityRepository universityRepository;
 
-    public List<University> getAllUniversities() {
+    public University findById(long universityId) {
+        return universityRepository.findById(universityId);
+    }
+
+    public List<University> findAll() {
         return universityRepository.findAll();
     }
 
