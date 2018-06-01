@@ -22,7 +22,7 @@ public class University {
     private String name;
 
     @Column(nullable = false)
-    private String emailPrefix; // e.g) snu.ac.kr
+    private String emailPostfix; // e.g) snu.ac.kr
 
     @Column(length = 1, columnDefinition = "ENUM('Y', 'N') NOT NULL DEFAULT 'N'")
     @Enumerated(value = EnumType.STRING)
