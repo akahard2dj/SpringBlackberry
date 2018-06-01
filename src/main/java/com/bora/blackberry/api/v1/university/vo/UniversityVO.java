@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 public class UniversityVO {
 
-    private long universityId;
+    private long id;
     private String name;
 }
