@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class StudentRegistrationForm {
 
-    private int universityCode;
+    private int universityId;
     private String password;
     private String nickName;
 }

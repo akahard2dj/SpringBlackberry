@@ -27,6 +27,9 @@ public class Student {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
+    private String nickName;
+
     @Column(length = 1, columnDefinition = "ENUM('Y', 'N') NOT NULL DEFAULT 'N'")
     @Enumerated(value = EnumType.STRING)
     private IsType deleted;
