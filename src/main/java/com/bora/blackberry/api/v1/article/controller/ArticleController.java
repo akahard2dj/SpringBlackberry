@@ -58,7 +58,7 @@ public class ArticleController {
     }
 
     @PutMapping("/articles/{articleId}")
-    @ApiOperation(value = "글 수정", notes = "글 수정2")
+    @ApiOperation(value = "글 수정", notes = "글 수정")
     public ResponseWrapper updateArticle(@PathVariable long articleId,
                                          @Valid @RequestBody ArticleForm articleForm) {
         articleService.updateArticle(articleId, articleForm);
